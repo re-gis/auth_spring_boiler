@@ -30,10 +30,18 @@ public class UserInfoService implements UserDetailsService {
     }
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserInfo> userDetail = userInfoRepository.findByName(username);
+        try {
 
-        return userDetail.map(UserInfoDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException("Username not found!"));
+            Optional<UserInfo> userDetail = userInfoRepository.findByName(username);
+            System.out.println(userDetail);
+            System.out.println(username);
+
+            return userDetail.map(UserInfoDetails::new)
+                    .orElseThrow(() -> new UsernameNotFoundException("Username not found!"));
+        } catch (Exception e) {
+            throw e;
+            // TODO: handle exception
+        }
     }
 
     public String addUser(UserInfo userInfo) {

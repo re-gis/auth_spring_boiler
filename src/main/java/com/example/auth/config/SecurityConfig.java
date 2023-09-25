@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/v1/auth/welcome", "/api/v1/auth/add", "/api/v1/auth/login").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("/api/v1/auth/user").authenticated()
+                .authorizeHttpRequests().requestMatchers("/api/v1/auth/**").authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

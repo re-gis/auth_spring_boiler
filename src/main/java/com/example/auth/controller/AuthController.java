@@ -16,6 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
@@ -37,13 +38,13 @@ public class AuthController {
     public String addNewUser(@RequestBody UserInfo userInfo) {
         return userInfoService.addUser(userInfo);
     }
-
+    
     @GetMapping("/profile")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public String getProfile() {
         return "This is a user profile";
     }
-
+    
     @GetMapping("/admin")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String getAdmin() {
